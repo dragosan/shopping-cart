@@ -1,12 +1,35 @@
-// feature 1 test
-
-import React from 'react';
+import React,{useState} from 'react';
 import './App.css';
 
+import data from './data.json';
+import ProductsList from './components/products/ProductsList';
+
 function App() {
+  const [state,setState] = useState({
+    products:data.products,
+    size:"",
+    sort:""
+  })
+
   return (
     <div className="App">
-     hello world! feature 1
+     <div className="grid-container">
+       <header>shopping cart</header>
+       <main>
+         <div className="content">
+           <div className="main">
+           <ProductsList products={state.products}/>  
+           </div>
+              <div className="sidebar">
+                Cart Items</div>     
+         </div>
+       </main>
+       <footer>
+       All Rights reseverd  
+
+       </footer>
+       
+     </div>
     </div>
   );
 }
