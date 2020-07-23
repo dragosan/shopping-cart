@@ -17,7 +17,7 @@ const AppProvider = props => {
       const sortProducts = (e) =>{
         setState({...state,
         sort:e.target.value,
-        products:data.products.slice().sort((a,b)=> 
+        products:state.products.slice().sort((a,b)=> 
         state.sort ==="lowest" ?
          (a.price > b.price ? 1:-1) :state.sort==="highest" ? (a.price < b.price ? 1:-1) :a._id < b._id ? 1 : -1)})
       }
