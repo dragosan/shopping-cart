@@ -6,7 +6,7 @@ export const AppContext = createContext();
 const AppProvider = props => {
     const [state,setState] = useState({
         products:data.products,
-        cart:[],
+        cart:localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [],
         size:"",
         sort:""
       })
@@ -27,11 +27,13 @@ const AppProvider = props => {
         if(!inCart){
             cartItems.push({...product,count:1})            
         }
+        localStorage.setItem("cart",JSON.stringify(cartItems))
         setState({...state,cart:cartItems})
       }
 
       const removeFromCart = (product) =>{
         const cartItems = state.cart.slice();
+        localStorage.setItem("cart",JSON.stringify(state.cart.filter(item=>item._id!==product._id)))
         setState({...state,cart:state.cart.filter(item=>item._id!==product._id)})
       }
 
