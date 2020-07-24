@@ -5,6 +5,7 @@ import data from './data.json';
 import ProductsList from './components/products/ProductsList';
 import AppProvider from './context/AppProvider';
 import Filter from './components/products/Filter';
+import Cart from './components/cart/Cart';
 
 function App() {
   
@@ -20,7 +21,7 @@ function App() {
            <ProductsList />  
            </div>
               <div className="sidebar">
-                Cart Items</div>     
+                <Cart /> </div>     
          </div>
        </main>
        <footer>

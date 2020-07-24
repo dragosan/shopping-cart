@@ -6,12 +6,33 @@ export const AppContext = createContext();
 const AppProvider = props => {
     const [state,setState] = useState({
         products:data.products,
+        cart:[],
         size:"",
         sort:""
       })
 
       const resetProducts = () =>{
           setState({...state,products:data.products})
+      }
+
+      const addToCart = (product) =>{        
+        const cartItems = state.cart.slice();
+        let inCart = false;
+         cartItems.forEach(item=>{
+            if(item._id===product._id){
+                item.count++;
+                inCart=true;                           
+            }            
+        })        
+        if(!inCart){
+            cartItems.push({...product,count:1})            
+        }
+        setState({...state,cart:cartItems})
+      }
+
+      const removeFromCart = (product) =>{
+        const cartItems = state.cart.slice();
+        setState({...state,cart:state.cart.filter(item=>item._id!==product._id)})
       }
 
       const sortProducts = (e) =>{
@@ -37,7 +58,14 @@ const AppProvider = props => {
         
 
     return (
-        <AppContext.Provider value={{...state,filterProducts,resetProducts,sortProducts}}>
+        <AppContext.Provider value={
+            {...state,
+            filterProducts
+            ,resetProducts,
+            sortProducts,
+            addToCart,
+            removeFromCart
+            }}>
             {props.children}
         </AppContext.Provider>
         
