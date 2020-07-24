@@ -3,7 +3,7 @@ import formatCurrency from "../../utils";
 import { AppContext } from "../../context/AppProvider"
 
 const ProductsList = () => {
-    const {products,size} = useContext(AppContext);
+    const {products,cart,addToCart} = useContext(AppContext);
   return (
       <div>
     <ul className="products">
@@ -16,7 +16,7 @@ const ProductsList = () => {
                         </a>
                         <div className="product-price">
                             <div>{formatCurrency(product.price)}</div>
-                            <button className="button primary">
+                            <button onClick={()=> addToCart(product)} className="button primary">
                                 Add To Cart
                             </button>
                         </div>
