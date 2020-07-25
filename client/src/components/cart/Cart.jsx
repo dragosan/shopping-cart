@@ -1,6 +1,7 @@
 import React,{useContext} from 'react'
 import { AppContext } from '../../context/AppProvider';
 import formatCurrency from '../../utils';
+import Fade from 'react-reveal/Fade';
 
 const Cart = () => {
     const { cart,removeFromCart } = useContext(AppContext);
@@ -15,6 +16,7 @@ const Cart = () => {
         )}
         <div>
           <div className="cart">
+              <Fade left cascade>
             <ul className="cart-items">
               {cart.map((item) => (
                 <li key={item._id}>
@@ -36,6 +38,7 @@ const Cart = () => {
                 </li>
               ))}
             </ul>
+            </Fade>
           </div>
           {cart.length !== 0 && (
             <div className="cart">
