@@ -1,19 +1,21 @@
-import React,{useState} from 'react';
+import React,{useState,useContext} from 'react';
+import {BrowserRouter as Router,Route} from 'react-router-dom';
 import './App.css';
 
-import data from './data.json';
+
 import ProductsList from './components/products/ProductsList';
-import AppProvider from './context/AppProvider';
 import Filter from './components/products/Filter';
 import Cart from './components/cart/Cart';
+import { AuthContext } from './context/AuthProvider';
+import Header from './components/layout/Header';
 
 function App() {
-  
-
+const {user} = useContext(AuthContext)
+console.log(user)
   return (
-    
+    <Router>
      <div className="grid-container">
-       <header>shopping cart</header>
+       <Header />
        <main>
          <div className="content">
            <div className="main">
@@ -25,12 +27,11 @@ function App() {
          </div>
        </main>
        <footer>
-       All Rights reseverd  
-
+       All Rights reseverd
        </footer>
        
      </div>
-    
+     </Router>
    
   );
 }

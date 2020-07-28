@@ -1,4 +1,5 @@
 import React,{createContext,useState} from 'react'
+import axios from 'axios'
 
 import data from '../data.json';
 
@@ -10,6 +11,16 @@ const AppProvider = props => {
         size:"",
         sort:""
       })
+
+    //   const getProducts = async () =>{
+    //     try {
+    //         const products = await axios.get("api/products")
+    //         console.log(products)
+    //         setState({...state,products})
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    //   }
 
       const resetProducts = () =>{
           setState({...state,products:data.products})

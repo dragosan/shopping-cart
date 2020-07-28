@@ -1,13 +1,16 @@
-import React,{useContext,useState} from "react";
-import formatCurrency from "../../utils";
+import React,{useContext,useState,useEffect} from "react";
+import formatCurrency from "../../utils/utils";
 import { AppContext } from "../../context/AppProvider";
+import {AuthContext} from "../../context/AuthProvider";
 import Modal from 'react-modal';
 import {Fade,Zoom} from 'react-reveal';
 
 const ProductsList = () => {
     const {products,addToCart} = useContext(AppContext);
+    const {user} = useContext(AuthContext)
     const [modal,setModal] = useState({product:null});
 
+    
     const openModal = (product) =>{
         setModal({product})
     }
@@ -49,7 +52,7 @@ const ProductsList = () => {
               </button>
               <div className="product-details">
                 <img src={modal.product.image} alt={modal.product.title}></img>
-                <div className="modal.product-details-description">
+                <div className="product-details-description">
                   <p>
                     <strong>{modal.product.title}</strong>
                   </p>
