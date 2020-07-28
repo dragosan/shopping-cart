@@ -1,6 +1,6 @@
 import React,{useContext} from 'react'
 import { AppContext } from '../../context/AppProvider';
-import formatCurrency from '../../utils';
+import formatCurrency from '../../utils/utils';
 import Fade from 'react-reveal/Fade';
 
 const Cart = () => {
