@@ -1,9 +1,22 @@
-import React,{useContext} from 'react'
+import React,{useContext,useState} from 'react'
 import { AppContext } from '../../context/AppProvider'
 
 const Filter = () => {
-    const {products,sort,size,filterProducts,sortProducts} = useContext(AppContext);
-    
+    const [size,setSize] = useState("ALL");
+    const [sort,setSort] = useState("")
+    const {products,filterProducts,sortProducts} = useContext(AppContext);
+    console.log(size)
+
+    function onFilterChange(e){
+      setSize(e.target.value);
+      filterProducts(e.target.value)
+      
+    }
+
+    function onSortChange(e){
+      setSort(e.target.value);
+      sortProducts(e.target.value);
+    }
     return (
         <div className="filter">
         <div className="filter-result">
@@ -13,7 +26,7 @@ const Filter = () => {
           Order{" "}
           <select
             value={sort}       
-            onChange={(e)=>sortProducts(e)}
+            onChange={onSortChange}
           >
             <option value="latest">Latest</option>
             <option value="lowest">Lowest</option>
@@ -23,13 +36,12 @@ const Filter = () => {
         <div className="filter-size">
           Filter{" "}
           <select
-            value={size}
-           onChange={(e)=> {
-               
-               filterProducts(e)}
-           }
+            value={size}          
+            onChange={(e)=>onFilterChange(e)}          
           >
-            <option value="All">ALL</option>
+            {}
+            <option value="latest">ALL</option>
+            <option value="X">X</option>
             <option value="XS">XS</option>
             <option value="S">S</option>
             <option value="M">M</option>

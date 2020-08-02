@@ -1,4 +1,5 @@
 import React,{useContext,useState,useEffect} from "react";
+import axios from 'axios';
 import formatCurrency from "../../utils/utils";
 import { AppContext } from "../../context/AppProvider";
 import {AuthContext} from "../../context/AuthProvider";
@@ -11,6 +12,7 @@ const ProductsList = () => {
     const [modal,setModal] = useState({product:null});
 
     
+
     const openModal = (product) =>{
         setModal({product})
     }
@@ -45,7 +47,7 @@ const ProductsList = () => {
       
     </ul>
     </Fade>
-    {modal.product && <Modal isOpen={true}  onRequestClose={closeModal}>
+    {modal.product && <Modal isOpen={true}  onRequestClose={closeModal} ariaHideApp={false}>
             <Zoom>
               <button className="close-modal"  onClick={closeModal}>
                 x

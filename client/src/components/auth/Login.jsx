@@ -10,7 +10,7 @@ const Login = () => {
     const [passError,setPassError] = useState('');
     return (
         <div className="form">
-    <form onSubmit={onSubmit} >
+    <form >
       <ul className="form-container">
         <li>
           <h2>Create Account</h2>
