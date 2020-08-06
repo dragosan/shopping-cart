@@ -10,7 +10,7 @@ const ProductsList = () => {
     const {products,addToCart} = useContext(AppContext);
     const {user} = useContext(AuthContext)
     const [modal,setModal] = useState({product:null});
-
+    
     
 
     const openModal = (product) =>{
@@ -33,12 +33,20 @@ const ProductsList = () => {
                             <img src={product.image} alt={product.title}/>
                             <p>{product.title}</p>
                         </a>
+                        
                         <div className="product-price">
-                            <div>{formatCurrency(product.price)}</div>
+                          <div className="price">
+                          <h4>{formatCurrency(product.price)}</h4>
+                            
                             <button onClick={()=> addToCart(product)} className="button primary">
-                                Add To Cart
+                                To Cart
                             </button>
                         </div>
+                        <div className="stock">
+                        <h3>Availbale : <span className="inStock">{product.inStock}</span></h3>
+                        </div>
+                          </div>
+                            
                     </div>
                 </li>
               ))

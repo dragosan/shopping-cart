@@ -52,7 +52,7 @@ router.post(
           .status(400)
           .json({ errors: [{ msg: "Invalid Credentials" }] });
       }
-
+      console.log(user)
       //return jsonwebtoken
       const payload = {
         user: {
@@ -67,8 +67,9 @@ router.post(
         },
         (err, token) => {
           if (err) throw err;
-          res.json({ token });
+          res.json({ token,user });
         }
+        
       );
     } catch (err) {
       console.log(err);

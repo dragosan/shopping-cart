@@ -9,8 +9,7 @@ const AppProvider = props => {
   
     const [state,setState] = useState({
         products:[],
-        cart:localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [],
-        sort:""
+        cart:localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []
       })
 
       
@@ -54,7 +53,6 @@ const AppProvider = props => {
       }
 
       const sortProducts = (sortType) =>{
-        console.log(sortType)
         const sortedProducts = state.products.slice();
   if (sortType === "latest") {
     

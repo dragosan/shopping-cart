@@ -1,31 +1,37 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 import {Link} from 'react-router-dom'
+import { AuthContext } from '../../context/AuthProvider';
 
 const Login = () => {
-    const [name,setName] = useState('');
+  const {user,login} = useContext(AuthContext);
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
-    const [password2,setPassword2] = useState('');
     const [errors,setErrors] = useState([]);
     const [passError,setPassError] = useState('');
+
+    const onSubmit = e =>{
+      e.preventDefault();
+      
+      try {
+          const user = {email,password}
+          login(user)
+      } catch (err) {
+          console.log(err)
+      }
+      
+  }
     return (
         <div className="form">
-    <form >
+    <form onSubmit={onSubmit}>
       <ul className="form-container">
-        <li>
-          <h2>Create Account</h2>
-        </li>
+        
+          <h2>Login Into Account</h2>
+       
         <li className="errors">
           {passError && <h3>{passError}</h3>}
           {errors.length > 0 && <div className="srv-errors">{errors.map(error=><h3 key={error.msg}>{error.msg}</h3>)}</div>}
         </li>
-        <li>
-          <label htmlFor="name">
-            Name
-          </label>
-          <input type="name" name="name" id="name" onChange={(e) => setName(e.target.value)} required>
-          </input>
-        </li>
+        
         <li>
           <label htmlFor="email">
             Email
@@ -38,17 +44,13 @@ const Login = () => {
           <input type="password" id="password" name="password" onChange={(e) => setPassword(e.target.value)} minLength="6">
           </input>
         </li>
+        
         <li>
-          <label htmlFor="password2">Re-Enter Password</label>
-          <input type="password" id="Password2" name="Password2" onChange={(e) => setPassword2(e.target.value)}>
-          </input>
+          <button type="submit" className="button primary">Login</button>
         </li>
         <li>
-          <button type="submit" className="button primary">Register</button>
-        </li>
-        <li>
-          Already have an account?
-          <Link to="/login" className="button secondary text-center" >Sign into your account</Link>
+          don't have an account?
+          <Link to="/register" className="button secondary text-center" >Create Account</Link>
 
         </li>
 

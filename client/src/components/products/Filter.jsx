@@ -5,7 +5,7 @@ const Filter = () => {
     const [size,setSize] = useState("ALL");
     const [sort,setSort] = useState("")
     const {products,filterProducts,sortProducts} = useContext(AppContext);
-    console.log(size)
+    
 
     function onFilterChange(e){
       setSize(e.target.value);

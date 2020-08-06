@@ -6,6 +6,7 @@ const ProductSchema = new Schema({
     image: {type:String , default:"default.jpg"},
     description: String,
     availableSizes: [String],
+    inStock:{type:Number,default:0},
     price: {type:Number,required:true}
 })
 

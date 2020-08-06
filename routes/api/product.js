@@ -37,6 +37,23 @@ router.get("/", async (req, res) => {
     }
   })
 
+  //@route Put /api/products @desc edit Product @access admin
+  router.patch("/:id", async (req,res)=>{
+    
+    
+    
+    try {
+       
+      const id = req.params.id;
+      const updates = req.body;
+      const product = await Product.findByIdAndUpdate(id,updates,{new:true});
+      return res.send(product)
+    } catch (err) {
+        console.log(err);
+      return res.status(500).send("System Error");
+    }
+  })
+
     //@route Delete /api/products/:id @desc delete Product @access private
     router.delete("/:id",async (req,res)=>{
       try {

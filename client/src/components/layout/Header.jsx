@@ -3,18 +3,21 @@ import {NavLink} from 'react-router-dom'
 import { AuthContext } from '../../context/AuthProvider'
 
 const Header = () => {
-    const {user} = useContext(AuthContext)
+    const {user,logout} = useContext(AuthContext)
     const authLinks = (
       <header className="header">
-        <button className="btn-header">
+        
+      <div className="brand">
+      <button className="btn-header">
           &#9776;
           </button>
-      <div className="brand">
-        
         <NavLink to="/">amazona</NavLink>
       </div>
       <div className="header-links">
         <NavLink to="/cart">Cart</NavLink>
+        {user && <NavLink to="/">{user.name}</NavLink>}
+        <NavLink to="/" onClick={logout}>Sign Out</NavLink>
+        
         
       </div>
     </header>
@@ -29,7 +32,7 @@ const Header = () => {
         <NavLink to="/">amazona</NavLink>
       </div>
       <div className="header-links">
-        <NavLink to="/cart">Cart</NavLink>
+        <NavLink to="/register">Register</NavLink>
         <NavLink to="/login">Login</NavLink>
       </div>
     </header>
